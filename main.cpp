@@ -85,7 +85,7 @@ bool compararFechas(const string& s1, const string& s2){
     return d1>=d2;
 }
 //mostrar comentarios con la comparacion 
-void cargarComentarios(string &date){
+void cargarComentarios(const string &date){
     cout<<"Cargando Comentarios..."<<endl;
     system("cls");
     bool mostrar = false; 
