@@ -39,7 +39,7 @@ struct Comentarios {
     string comentario;
     string fecha;
 };
-// Prueba
+
 int main(){
 
     return 0;
