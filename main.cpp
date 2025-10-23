@@ -5,7 +5,7 @@
 using namespace std;
 struct Usuario {
     int idUsuario;
-    string nombre, correoElectronico, contraseña, direccion, metodoDePago;
+    string nombre, correoElectronico, contra, direccion, metodoDePago;
 };
 
 struct Producto {
