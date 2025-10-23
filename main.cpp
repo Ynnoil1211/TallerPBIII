@@ -2,64 +2,14 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <algorithm>
+#include <iomanip>
+#include <windows.h>
+#include "Structs.h"
+#include "Datos.h"
 using namespace std;
-struct Usuario {
-    int idUsuario;
-    string nombre, correoElectronico, contra, direccion, metodoDePago;
-};
 
-struct Producto {
-    int idProducto;
-    string nombre, descripcion;
-    double precio;
-    int stock;
-};
-
-struct CarritoDeCompras {
-    int idCarrito;
-    Usuario usuario;
-    vector<int> productos;
-    double subtotal, impuestos;
-};
-
-struct OrdenDeCompra {
-    int idOrden;
-    vector<Producto> productos;
-    double subtotal, impuestos, envio, total;
-};
-
-struct Categoria {
-    int idCategoria;
-    string nombre;
-};
-
-struct Comentario {
-    int idComentario;
-    Producto produc;
-    Usuario user;
-    string comento;
-    string fecha;
-};
-/////////Datos::////////////////
-vector<Usuario> Usuarios = {
-        {1, "Juan Pérez", "juan.perez@email.com", "Qwerty123",
-        "Carrera 45 #10-20", "Tarjeta de crédito"},
-        {2, "Ana Gómez", "ana.gomez@email.com", "Pass456",
-        "Calle 21 #35-50", "PayPal"},
-    };
-vector<Producto> Productos = {
-    {1, "Laptop", "Portátil con pantalla Full HD y SSD de 512GB", 89999, 10},
-    {2, "Smartphone", "Teléfono con cámara de 108MP y carga rápida", 49950, 20},
-    {3, "Tablet", "Dispositivo con pantalla táctil de 10 pulgadas", 29999, 15},
-    {4, "Auriculares", "Audífonos inalámbricos con cancelación de ruido", 12999, 25}
-    };
-vector<Comentario> comentarios = {
-    {1, Productos[0], Usuarios[0], "Excelente rendimiento; muy rápida. ¡Me encanta!", "1/05/2025"},
-    {2, Productos[1], Usuarios[1], "Buena cámara pero la batería dura poco.", "3/05/2025"},
-    {3, Productos[2], Usuarios[0], "No me gustó; pantalla de baja calidad.", "5/05/2025"},
-    {4, Productos[3], Usuarios[1], "Sonido aceptable pero el material parece frágil.", "6/05/2025"}
-};
-//mostrar todos los usairoos 
+//mostrar todos los usairoos
 void listarUsuarios (){
     cout<<"//////Lista de Usuarios//////"<<endl;
     for(const auto& u : Usuarios){
@@ -99,7 +49,7 @@ void cargarComentarios(const string &date){
             mostrar = true;
             cout<<"Id. Comentario: "<<comment.idComentario<<endl;
             cout<<"Producto: " <<comment.produc.nombre<<endl;
-            cout<<"Usuario: " <<comment.user.nombre<<endl;
+            cout<<"Usuario: " <<comment.user<<endl;
             cout<<"Comentario: "<<comment.comento<<endl;
             cout<<"Fecha: "<<comment.fecha<<endl;
         }
@@ -108,8 +58,39 @@ void cargarComentarios(const string &date){
         cout<<"0 comentario encontrado. "<<endl;
     }
 }
+void listarProductos() {
+    cout << "\n╔═══════════════════════════════���═══════════════════════════════���═══════════════════════���══╗" << endl;
+    cout << "║                      PRODUCTOS CON BAJO STOCK (Menos de 15 unidades)                     ║" << endl;
+    cout << "╚══════════════════════════════════════════════════════════════════════════════════════════╝" << endl;
+    cout << left << setw(5) << "ID"
+         << setw(20) << "NOMBRE"
+         << setw(45) << "DESCRIPCION"
+         << right << setw(12) << "PRECIO"
+         << setw(10) << "STOCK" << endl;
+    cout << string(92, '=') << endl;
+
+    int contador = 0;
+    for (const auto& p : Productos) {
+        if(p.stock < 15) {
+            cout << left << setw(5) << p.idProducto
+                 << setw(20) << p.nombre
+                 << setw(45) << p.descripcion
+                 << right << setw(12) << fixed << setprecision(2) << "$" + to_string(p.precio).substr(0, to_string(p.precio).find('.')+3)
+                 << setw(10) << p.stock << endl;
+            contador++;
+        }
+    }
+    cout << string(92, '=') << endl;
+    cout << "Total de productos con bajo stock: " << contador << endl << endl;
+}
+void addProducto(CarritoDeCompras &carrito, int idProducto) {
+
+}
 int main(){
+    SetConsoleOutputCP(65001);
+    inicializarDatos();
     listarUsuarios();
     cargarComentarios("3/05/2025");
+    listarProductos();
     return 0;
 }
