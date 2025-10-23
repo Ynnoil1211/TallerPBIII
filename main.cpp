@@ -60,7 +60,7 @@ vector<Comentario> comentarios = {
     {4, Productos[3], Usuarios[1], "Sonido aceptable pero el material parece frágil.", "6/05/2025"}
 };
 //mostrar todos los usairoos 
-void listarUsuarios (const vector<Usuario> &Usuarios){
+void listarUsuarios (){
     cout<<"//////Lista de Usuarios//////"<<endl;
     for(const auto& u : Usuarios){
         cout<<"ID: "<<u.idUsuario<<endl;
@@ -85,7 +85,7 @@ bool compararFechas(const string& s1, const string& s2){
     return d1>=d2;
 }
 //mostrar comentarios con la comparacion 
-void cargarComentarios(const vector<Comentario> &comentarios, string date){
+void cargarComentarios(string &date){
     cout<<"Cargando Comentarios..."<<endl;
     system("cls");
     bool mostrar = false; 
@@ -109,7 +109,7 @@ void cargarComentarios(const vector<Comentario> &comentarios, string date){
     }
 }
 int main(){
-    listarUsuarios(Usuarios);
-    cargarComentarios(comentarios,"3/05/2025");
+    listarUsuarios();
+    cargarComentarios("3/05/2025");
     return 0;
 }
