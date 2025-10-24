@@ -9,7 +9,7 @@
 #include "Datos.h"
 using namespace std;
 
-//mostrar todos los usairoos
+//mostrar todos los usuarios
 void listarUsuarios (){
     cout<<"//////Lista de Usuarios//////"<<endl;
     for(const auto& u : Usuarios){
