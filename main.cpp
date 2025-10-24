@@ -86,6 +86,45 @@ void listarProductos() {
 void addProducto(CarritoDeCompras &carrito, int idProducto) {
 
 }
+void iniciarSesion() {
+	
+	string email;
+	string pass;
+	cout<<setw(15)<<"Inicio de sesion"<<endl;
+	const Usuario* usuarioEncontrado=nullptr;
+	std::vector<Usuario>::iterator user;
+	
+	do {
+		cout<<"Ingresar correo electronico: ";
+		cin>>email;
+	
+		user = find_if(Usuarios.begin(), Usuarios.end(), [email](const Usuario& u) {
+			return u.correoElectronico==email;
+		});
+	
+		if(user!=Usuarios.end()) {
+			
+			cout<<"Usuario encontrado! "<<user->nombre<<"!!!";	
+		}
+		else {
+			cout<<"Usuario no encontrado!, Ingrese uno nuevamente."<<endl;
+		}
+	} while(user==Usuarios.end());
+	
+	do {
+		cout<<"Ingresar contraseña: ";
+		cin>>pass;
+		
+		if (pass==user->contra) {
+            cout << "Bienvenid@ "<<user->nombre<< "!!!"<<endl;
+            break;
+        } else {
+            cout<<"Contraseña incorrecta, intente nuevamente."<<endl;
+        }
+	}while(true);
+	
+	system("pause");
+}
 int main(){
     SetConsoleOutputCP(65001);
     inicializarDatos();
