@@ -325,8 +325,8 @@ int main(){
                 do {
                     entradaEnRango(idProducto, 0, Productos.size(), "Ingrese el ID del producto a añadir (0 para salir): ", "ID invalido. Intente nuevamente.");
                     if (idProducto == 0) break;
-                    if (Productos[idProducto-1].stock<=0){
-                        cout<<"ese producto ya no esta en el stock"<<endl;
+                    if (Productos[idProducto-1].stock==0){
+                        cout<<"Ese producto ya no esta en el stock."<<endl;
                     }
                     else{
                     addProducto(carrito, idProducto);
