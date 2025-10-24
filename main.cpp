@@ -186,9 +186,10 @@ void mostrarCarrito(const CarritoDeCompras &carrito) {
     cout << "\n";
 }
 
-void addProducto(CarritoDeCompras &carrito, const int idProducto) {
+void addProducto(CarritoDeCompras &carrito, const int idProducto, const int cantidad) {
+    Productos[idProducto-1].stock -= cantidad;
 	carrito.productos.push_back(idProducto);
-	carrito.subtotal += Productos[idProducto - 1].precio;
+	carrito.subtotal += Productos[idProducto - 1].precio * cantidad;
 	carrito.impuestos = carrito.subtotal * 0.19;
 }
 
