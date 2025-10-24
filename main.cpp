@@ -143,10 +143,10 @@ void mostrarProductosCarrito(const CarritoDeCompras &carrito) {
         return;
     }
 
-    for (size_t i = 0; i < carrito.productos.size(); i++) {
+    for (int i = 0; i < carrito.productos.size(); i++) {
         const int idProducto = carrito.productos[i];
         const Producto& p = Productos[idProducto - 1];
-        mostrarFilaProducto(static_cast<int>(i) + 1, p, true, 1);
+        mostrarFilaProducto(i+ 1, p, true, 1);
     }
     mostrarLineaSeparadora();
 }
@@ -186,15 +186,15 @@ void mostrarCarrito(const CarritoDeCompras &carrito) {
     cout << "\n";
 }
 
-void addProducto(CarritoDeCompras &carrito, const int idProducto, const int cantidad) {
-    Productos[idProducto-1].stock -= cantidad;
+void addProducto(CarritoDeCompras &carrito, const int idProducto) {
+    Productos[idProducto-1].stock--;
 	carrito.productos.push_back(idProducto);
-	carrito.subtotal += Productos[idProducto - 1].precio * cantidad;
+	carrito.subtotal += Productos[idProducto - 1].precio;
 	carrito.impuestos = carrito.subtotal * 0.19;
 }
 
 void crearCarrito(const int idUsuario) {
-	const int id = (carritos.empty() ? carritos.back().idCarrito+1 : 1);
+	const int id = (carritos.empty() ? 1 : carritos.back().idCarrito+1);
 	const CarritoDeCompras carrito = {id,Usuarios[idUsuario - 1],{},0.0,0.0};
 	carritos.push_back(carrito);
 }
@@ -215,7 +215,7 @@ void iniciarSesion() {
 	
 		if(user!=Usuarios.end()) {
 			
-			cout<<"Usuario encontrado! "<<user->nombre<<"!!!";	
+			cout<<"Usuario encontrado! "<<user->nombre<<"!!!"<<endl;
 		}
 		else {
 			cout<<"Usuario no encontrado!, Ingrese uno nuevamente."<<endl;
@@ -235,17 +235,24 @@ void iniciarSesion() {
 	
 	system("pause");
 }
+void entradaEnRango(int &val, const int min, const int max, const string &msg, const string &error) {
+    do {
+        cout<<msg;
+        cin>>val;
+        if (val>max || val<min) cout<<error<<endl;
+    } while (val>max || val<min);
+}
 int main(){
     SetConsoleOutputCP(65001);
-    inicializarDatos();
-    listarUsuarios();
-    cargarComentarios("3/05/2025");
-    listarProductos();
-    system("pause");
-    crearCarrito(1);
-    addProducto(carritos[0], 1);
-    addProducto(carritos[0], 5);
-    addProducto(carritos[0], 10);
-    mostrarCarrito(carritos[0]);
+    iniciarSesion();
+    for (int opcion=-1;;) {
+        system("cls");
+        cout << "//////Menu Principal//////" << endl;
+        cout << "1. Listar usuarios" << endl;
+        cout << "2. Listar productos con bajo stock" << endl;
+        cout << "3. Cargar comentarios despues de una fecha" << endl;
+        cout << "4. Añadir producto al carrito de compras" << endl;
+        cout << "5. Salir" << endl;
+    }
     return 0;
 }
