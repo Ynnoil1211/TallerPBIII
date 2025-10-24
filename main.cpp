@@ -83,25 +83,54 @@ bool compararFechas(const string& s1, const string& s2){
 void cargarComentarios(const string &date){
     cout<<"Cargando Comentarios..."<<endl;
     system("cls");
-    bool mostrar = false; 
-    bool message = true;
+
+    mostrarEncabezadoTabla("COMENTARIOS DESPUES DE " + date);
+
+    cout << left
+         << setw(5) << "ID"
+         << setw(25) << "PRODUCTO"
+         << setw(25) << "USUARIO"
+         << setw(70) << "COMENTARIO"
+         << setw(15) << "FECHA"
+         << endl;
+    mostrarLineaSeparadora();
+
+    int contador = 0;
     for(auto& comment : comentarios){
         if(compararFechas(comment.fecha, date)){
-            if(message){
-                cout<<"Comentarios (despues de "<<date<<") encontrados: "<<endl;
-                message = false;
+            contador++;
+
+            string producto = comment.produc.nombre;
+            if (producto.length() > 25) {
+                producto = producto.substr(0, 22) + "...";
             }
-            mostrar = true;
-            cout<<"Producto: " <<comment.produc.nombre<<endl;
-            cout<<"Usuario: " <<comment.user<<endl;
-            cout<<"Comentario: "<<comment.comento<<endl;
-            cout<<"Fecha: "<<comment.fecha<<endl;
-            cout<<endl;
+
+            string usuario = comment.user;
+            if (usuario.length() > 25) {
+                usuario = usuario.substr(0, 22) + "...";
+            }
+
+            string comentario = comment.comento;
+            if (comentario.length() > 70) {
+                comentario = comentario.substr(0, 67) + "...";
+            }
+
+            cout << left
+                 << setw(5) << comment.idComentario
+                 << setw(25) << producto
+                 << setw(25) << usuario
+                 << setw(70) << comentario
+                 << setw(15) << comment.fecha
+                 << endl;
         }
     }
-    if(!mostrar){
-        cout<<"No hay comentarios despues de "<<date<<"."<<endl;
-    }
+
+    mostrarLineaSeparadora();
+
+    if(contador == 0) cout << "No hay comentarios despues de " << date << "." << endl;
+    else cout << "Total de comentarios encontrados: " << contador << endl;
+
+    cout << endl;
 }
 
 int contarProductosBajoStock() {
@@ -251,7 +280,7 @@ void entradaEnRango(int &val, const int min, const int max, const string &msg, c
 int main(){
     SetConsoleOutputCP(65001);
     inicializarDatos();
-    auto user = iniciarSesion();
+    const auto user = iniciarSesion();
     crearCarrito(user->idUsuario);
     for (int opcion=-1;;) {
         system("cls");
