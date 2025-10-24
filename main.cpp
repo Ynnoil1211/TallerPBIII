@@ -11,19 +11,20 @@ using namespace std;
 
 // Funciones para formato
 void mostrarLineaSeparadora() {
-    cout << string(135, '=') << endl;
+    cout << string(145, '=') << endl;
 }
 
 void mostrarEncabezadoTabla(const string& titulo) {
     cout << "\n";
     mostrarLineaSeparadora();
-    int espacios = (135 - titulo.length()) / 2;
+    int espacios = (145 - titulo.length()) / 2;
     cout << string(espacios, ' ') << titulo << endl;
     mostrarLineaSeparadora();
 }
 
 void mostrarColumnas(bool conCantidad = false) {
     cout << left
+         << setw(5) << "ID"
          << setw(25) << "NOMBRE"
          << setw(80) << "DESCRIPCION"
          << setw(15) << "PRECIO"
@@ -44,10 +45,11 @@ void mostrarFilaProducto(int numero, const Producto& p, bool esCantidad = false,
     }
 
     cout << left
+         << setw(5) << p.idProducto
          << setw(25) << nombre
          << setw(80) << desc
          << setw(1) << "$"
-         << right << setw(14) << fixed << setprecision(2) << p.precio
+         << setw(14) << fixed << setprecision(2) << p.precio
          << setw(10) << (esCantidad ? cantidad : p.stock)
          << endl;
 }
@@ -86,26 +88,20 @@ void cargarComentarios(const string &date){
     for(auto& comment : comentarios){
         if(compararFechas(comment.fecha, date)){
             if(message){
-                cout<<"Comentarios (after "<<date<<") encontrados: "<<endl;
+                cout<<"Comentarios (despues de "<<date<<") encontrados: "<<endl;
                 message = false;
             }
             mostrar = true;
-            cout<<"Id. Comentario: "<<comment.idComentario<<endl;
             cout<<"Producto: " <<comment.produc.nombre<<endl;
             cout<<"Usuario: " <<comment.user<<endl;
             cout<<"Comentario: "<<comment.comento<<endl;
             cout<<"Fecha: "<<comment.fecha<<endl;
+            cout<<endl;
         }
     }
     if(!mostrar){
-        cout<<"0 comentario encontrado. "<<endl;
+        cout<<"No hay comentarios despues de "<<date<<"."<<endl;
     }
-}
-
-
-void mostrarEncabezadoProductos() {
-    mostrarEncabezadoTabla("PRODUCTOS CON BAJO STOCK (Menos de 15 unidades)");
-    mostrarColumnas(false);
 }
 
 int contarProductosBajoStock() {
@@ -120,12 +116,22 @@ int contarProductosBajoStock() {
 }
 
 void listarProductos() {
-    mostrarEncabezadoProductos();
+    mostrarEncabezadoTabla("LISTA DE PRODUCTOS");
+    mostrarColumnas(false);
+    for (const auto& p : Productos) {
+        mostrarFilaProducto(p.idProducto, p, false);
+    }
+    mostrarLineaSeparadora();
+    cout << "Total de productos: " << Productos.size() << endl << endl;
+}
+
+void bajoStock() {
+    mostrarEncabezadoTabla("PRODUCTOS CON BAJO STOCK (Menos de 15 unidades)");
+    mostrarColumnas(false);
     int total = contarProductosBajoStock();
     mostrarLineaSeparadora();
     cout << "Total de productos con bajo stock: " << total << endl << endl;
 }
-
 
 void mostrarEncabezadoCarrito(const CarritoDeCompras &carrito) {
     mostrarEncabezadoTabla("CARRITO DE COMPRAS");
@@ -157,21 +163,21 @@ void mostrarResumenCarrito(const CarritoDeCompras &carrito) {
     cout << "\n" << "RESUMEN DE COMPRA" << endl;
     mostrarLineaSeparadora();
 
-    cout << left << setw(120) << "Subtotal:"
+    cout << left << setw(130) << "Subtotal:"
          << setw(1) << "$"
          << right << setw(14) << fixed << setprecision(2) << carrito.subtotal << endl;
 
-    cout << left << setw(120) << "Impuestos (19%):"
+    cout << left << setw(130) << "Impuestos (19%):"
          << setw(1) << "$"
          << right << setw(14) << fixed << setprecision(2) << carrito.impuestos << endl;
 
-    cout << left << setw(120) << "Envío:"
+    cout << left << setw(130) << "Envío:"
          << setw(1) << "$"
          << right << setw(14) << fixed << setprecision(2) << ENVIO << endl;
 
     mostrarLineaSeparadora();
 
-    cout << left << setw(120) << "TOTAL A PAGAR:"
+    cout << left << setw(130) << "TOTAL A PAGAR:"
          << setw(1) << "$"
          << right << setw(14) << fixed << setprecision(2) << total << endl;
 
@@ -251,7 +257,7 @@ int main(){
         system("cls");
         cout << "//////Menu Principal//////" << endl;
         cout << "1. Listar usuarios" << endl;
-        cout << "2. Listar productos con bajo stock" << endl;
+        cout << "2. Listar productos" << endl;
         cout << "3. Cargar comentarios despues de una fecha" << endl;
         cout << "4. Añadir producto al carrito de compras" << endl;
         cout << "5. Salir" << endl;
@@ -263,7 +269,17 @@ int main(){
                 break;
             }
             case 2: {
-                listarProductos();
+                cout << "//////Listar Productos//////" << endl;
+                cout << "1. Todos los productos" << endl;
+                cout <<"2. Productos con bajo stock" << endl;
+                int subOpcion;
+                entradaEnRango(subOpcion, 1, 2, "Seleccione una opcion (1-2): ", "Opcion invalida. Intente nuevamente.");
+                system("cls");
+                if (subOpcion == 1) {
+                    listarProductos();
+                } else {
+                    bajoStock();
+                }
                 break;
             }
             case 3: {
