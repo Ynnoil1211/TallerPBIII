@@ -9,7 +9,7 @@
 ## Requisitos de Compilación
 - **Compilador:** GCC (GNU Compiler Collection) 15.2.0
 - **Entorno:** MinGW-w64
-- **Estándar C++:** C++17
+- **Estándar C++:** C++11
 
 ## Descripción
 Sistema de carrito de compras desarrollado en C++ que permite gestionar usuarios, productos y comentarios.
@@ -20,5 +20,3 @@ Sistema de carrito de compras desarrollado en C++ que permite gestionar usuarios
 2. Listar productos (todos o con bajo stock) - Daniel Borre
 3. Cargar comentarios filtrados por fecha - Lionny Lin Li
 4. Añadir productos al carrito de compras - Daniel Borre
-
-
