@@ -198,7 +198,7 @@ void crearCarrito(const int idUsuario) {
 	const CarritoDeCompras carrito = {id,Usuarios[idUsuario - 1],{},0.0,0.0};
 	carritos.push_back(carrito);
 }
-void iniciarSesion() {
+vector<Usuario>::iterator iniciarSesion() {
 	
 	string email;
 	string pass;
@@ -232,8 +232,8 @@ void iniciarSesion() {
         }
 	    cout<<"Contraseña incorrecta, intente nuevamente."<<endl;
 	} while(true);
-	
 	system("pause");
+    return user;
 }
 void entradaEnRango(int &val, const int min, const int max, const string &msg, const string &error) {
     do {
@@ -244,7 +244,9 @@ void entradaEnRango(int &val, const int min, const int max, const string &msg, c
 }
 int main(){
     SetConsoleOutputCP(65001);
-    iniciarSesion();
+    inicializarDatos();
+    auto user = iniciarSesion();
+    crearCarrito(user->idUsuario);
     for (int opcion=-1;;) {
         system("cls");
         cout << "//////Menu Principal//////" << endl;
@@ -253,6 +255,43 @@ int main(){
         cout << "3. Cargar comentarios despues de una fecha" << endl;
         cout << "4. Añadir producto al carrito de compras" << endl;
         cout << "5. Salir" << endl;
+        entradaEnRango(opcion, 1, 5, "Seleccione una opcion (1-5): ", "Opcion invalida. Intente nuevamente.");
+        system("cls");
+        switch (opcion) {
+            case 1: {
+                listarUsuarios();
+                break;
+            }
+            case 2: {
+                listarProductos();
+                break;
+            }
+            case 3: {
+                string date;
+                cout << "Ingrese la fecha (dd/mm/aaaa): ";
+                cin >> date;
+                cargarComentarios(date);
+                break;
+            }
+            case  4: {
+                CarritoDeCompras &carrito = carritos.back();
+
+                int idProducto;
+                do {
+                    entradaEnRango(idProducto, 0, Productos.size(), "Ingrese el ID del producto a añadir (0 para salir): ", "ID invalido. Intente nuevamente.");
+                    if (idProducto == 0) break;
+                    addProducto(carrito, idProducto);
+                    cout << "Producto añadido al carrito." << endl;
+                } while (true);
+                system("cls");
+                mostrarCarrito(carrito);
+                break;
+            }
+            case 5: {
+                cout << "Gracias" << endl;
+                return 0;
+            }
+        }
+        system("pause");
     }
-    return 0;
 }
