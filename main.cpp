@@ -9,6 +9,49 @@
 #include "Datos.h"
 using namespace std;
 
+// Funciones para formato
+void mostrarLineaSeparadora() {
+    cout << string(135, '=') << endl;
+}
+
+void mostrarEncabezadoTabla(const string& titulo) {
+    cout << "\n";
+    mostrarLineaSeparadora();
+    int espacios = (135 - titulo.length()) / 2;
+    cout << string(espacios, ' ') << titulo << endl;
+    mostrarLineaSeparadora();
+}
+
+void mostrarColumnas(bool conCantidad = false) {
+    cout << left
+         << setw(25) << "NOMBRE"
+         << setw(80) << "DESCRIPCION"
+         << setw(15) << "PRECIO"
+         << setw(10) << (conCantidad ? "CANT." : "STOCK")
+         << endl;
+    mostrarLineaSeparadora();
+}
+
+void mostrarFilaProducto(int numero, const Producto& p, bool esCantidad = false, int cantidad = 1) {
+    string nombre = p.nombre;
+    if (nombre.length() > 25) {
+        nombre = nombre.substr(0, 25);
+    }
+
+    string desc = p.descripcion;
+    if (desc.length() > 80) {
+        desc = desc.substr(0, 80);
+    }
+
+    cout << left
+         << setw(25) << nombre
+         << setw(80) << desc
+         << setw(1) << "$"
+         << right << setw(14) << fixed << setprecision(2) << p.precio
+         << setw(10) << (esCantidad ? cantidad : p.stock)
+         << endl;
+}
+
 //mostrar todos los usuarios
 void listarUsuarios (){
     cout<<"//////Lista de Usuarios//////"<<endl;
@@ -58,40 +101,107 @@ void cargarComentarios(const string &date){
         cout<<"0 comentario encontrado. "<<endl;
     }
 }
-void listarProductos() {
-    cout << "\n╔══════════════════════════════════════════════════════════════════════════════════════════╗" << endl;
-    cout << "║                      PRODUCTOS CON BAJO STOCK (Menos de 15 unidades)                     ║" << endl;
-    cout << "╚══════════════════════════════════════════════════════════════════════════════════════════╝" << endl;
-    cout << left << setw(5) << "ID"
-         << setw(20) << "NOMBRE"
-         << setw(45) << "DESCRIPCION"
-         << right << setw(12) << "PRECIO"
-         << setw(10) << "STOCK" << endl;
-    cout << string(92, '=') << endl;
 
+
+void mostrarEncabezadoProductos() {
+    mostrarEncabezadoTabla("PRODUCTOS CON BAJO STOCK (Menos de 15 unidades)");
+    mostrarColumnas(false);
+}
+
+int contarProductosBajoStock() {
     int contador = 0;
     for (const auto& p : Productos) {
         if(p.stock < 15) {
-            cout << left << setw(5) << p.idProducto
-                 << setw(20) << p.nombre
-                 << setw(45) << p.descripcion
-                 << right << setw(12) << fixed << setprecision(2) << "$" + to_string(p.precio).substr(0, to_string(p.precio).find('.')+3)
-                 << setw(10) << p.stock << endl;
+            mostrarFilaProducto(p.idProducto, p, false);
             contador++;
         }
     }
-    cout << string(92, '=') << endl;
-    cout << "Total de productos con bajo stock: " << contador << endl << endl;
+    return contador;
 }
-void addProducto(CarritoDeCompras &carrito, int idProducto) {
 
+void listarProductos() {
+    mostrarEncabezadoProductos();
+    int total = contarProductosBajoStock();
+    mostrarLineaSeparadora();
+    cout << "Total de productos con bajo stock: " << total << endl << endl;
+}
+
+
+void mostrarEncabezadoCarrito(const CarritoDeCompras &carrito) {
+    mostrarEncabezadoTabla("CARRITO DE COMPRAS");
+    cout << "Usuario: " << carrito.usuario.nombre << " (" << carrito.usuario.correoElectronico << ")" << endl;
+    cout << "ID Carrito: " << carrito.idCarrito << endl;
+    mostrarLineaSeparadora();
+}
+
+void mostrarProductosCarrito(const CarritoDeCompras &carrito) {
+    mostrarColumnas(true);
+
+    if (carrito.productos.empty()) {
+        cout << "El carrito está vacío" << endl;
+        mostrarLineaSeparadora();
+        return;
+    }
+
+    for (size_t i = 0; i < carrito.productos.size(); i++) {
+        const int idProducto = carrito.productos[i];
+        const Producto& p = Productos[idProducto - 1];
+        mostrarFilaProducto(static_cast<int>(i) + 1, p, true, 1);
+    }
+    mostrarLineaSeparadora();
+}
+
+void mostrarResumenCarrito(const CarritoDeCompras &carrito) {
+    double total = carrito.subtotal + carrito.impuestos + ENVIO;
+
+    cout << "\n" << "RESUMEN DE COMPRA" << endl;
+    mostrarLineaSeparadora();
+
+    cout << left << setw(120) << "Subtotal:"
+         << setw(1) << "$"
+         << right << setw(14) << fixed << setprecision(2) << carrito.subtotal << endl;
+
+    cout << left << setw(120) << "Impuestos (19%):"
+         << setw(1) << "$"
+         << right << setw(14) << fixed << setprecision(2) << carrito.impuestos << endl;
+
+    cout << left << setw(120) << "Envío:"
+         << setw(1) << "$"
+         << right << setw(14) << fixed << setprecision(2) << ENVIO << endl;
+
+    mostrarLineaSeparadora();
+
+    cout << left << setw(120) << "TOTAL A PAGAR:"
+         << setw(1) << "$"
+         << right << setw(14) << fixed << setprecision(2) << total << endl;
+
+    mostrarLineaSeparadora();
+}
+
+void mostrarCarrito(const CarritoDeCompras &carrito) {
+    system("cls");
+    mostrarEncabezadoCarrito(carrito);
+    mostrarProductosCarrito(carrito);
+    mostrarResumenCarrito(carrito);
+    cout << "\n";
+}
+
+void addProducto(CarritoDeCompras &carrito, const int idProducto) {
+	carrito.productos.push_back(idProducto);
+	carrito.subtotal += Productos[idProducto - 1].precio;
+	carrito.impuestos = carrito.subtotal * 0.19;
+}
+
+void crearCarrito(const int idUsuario) {
+	const int id = (carritos.empty() ? carritos.back().idCarrito+1 : 1);
+	const CarritoDeCompras carrito = {id,Usuarios[idUsuario - 1],{},0.0,0.0};
+	carritos.push_back(carrito);
 }
 void iniciarSesion() {
 	
 	string email;
 	string pass;
 	cout<<setw(15)<<"Inicio de sesion"<<endl;
-	const Usuario* usuarioEncontrado=nullptr;
 	std::vector<Usuario>::iterator user;
 	
 	do {
@@ -118,10 +228,9 @@ void iniciarSesion() {
 		if (pass==user->contra) {
             cout << "Bienvenid@ "<<user->nombre<< "!!!"<<endl;
             break;
-        } else {
-            cout<<"Contraseña incorrecta, intente nuevamente."<<endl;
         }
-	}while(true);
+	    cout<<"Contraseña incorrecta, intente nuevamente."<<endl;
+	} while(true);
 	
 	system("pause");
 }
@@ -131,5 +240,11 @@ int main(){
     listarUsuarios();
     cargarComentarios("3/05/2025");
     listarProductos();
+    system("pause");
+    crearCarrito(1);
+    addProducto(carritos[0], 1);
+    addProducto(carritos[0], 5);
+    addProducto(carritos[0], 10);
+    mostrarCarrito(carritos[0]);
     return 0;
 }
