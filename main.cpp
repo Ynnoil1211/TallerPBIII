@@ -9,7 +9,6 @@
 #include "Datos.h"
 using namespace std;
 
-// Funciones para formato
 void mostrarLineaSeparadora() {
     cout << string(145, '=') << endl;
 }
@@ -17,12 +16,12 @@ void mostrarLineaSeparadora() {
 void mostrarEncabezadoTabla(const string& titulo) {
     cout << "\n";
     mostrarLineaSeparadora();
-    int espacios = (145 - titulo.length()) / 2;
+    const int espacios = (145 - titulo.length()) / 2;
     cout << string(espacios, ' ') << titulo << endl;
     mostrarLineaSeparadora();
 }
 
-void mostrarColumnas(bool conCantidad = false) {
+void mostrarColumnas(const bool conCantidad = false) {
     cout << left
          << setw(5) << "ID"
          << setw(25) << "NOMBRE"
@@ -33,30 +32,19 @@ void mostrarColumnas(bool conCantidad = false) {
     mostrarLineaSeparadora();
 }
 
-void mostrarFilaProducto(int numero, const Producto& p, bool esCantidad = false, int cantidad = 1) {
-    string nombre = p.nombre;
-    if (nombre.length() > 25) {
-        nombre = nombre.substr(0, 25);
-    }
-
-    string desc = p.descripcion;
-    if (desc.length() > 80) {
-        desc = desc.substr(0, 80);
-    }
-
+void mostrarFilaProducto(const Producto& p, bool esCantidad = false, int cantidad = 1) {
     cout << left
          << setw(5) << p.idProducto
-         << setw(25) << nombre
-         << setw(80) << desc
+         << setw(25) << p.nombre
+         << setw(80) << p.descripcion
          << setw(1) << "$"
          << setw(14) << fixed << setprecision(2) << p.precio
          << setw(10) << (esCantidad ? cantidad : p.stock)
          << endl;
 }
 
-//mostrar todos los usuarios
 void listarUsuarios (){
-    cout<<"//////Lista de Usuarios//////"<<endl;
+    cout<<"====== Lista de Usuarios ======"<<endl;
     for(const auto& u : Usuarios){
         cout<<"ID: "<<u.idUsuario<<endl;
         cout<<"Nombre: "<<u.nombre<<endl;
@@ -67,7 +55,7 @@ void listarUsuarios (){
     }
     cout<<"Usuarios cargados con exito. "<<endl;
 }
-//booleano para comparar dos fechas
+
 bool compararFechas(const string& s1, const string& s2){
     int a1,a2,m1,m2,d1,d2;
     stringstream ss1(s1);
@@ -79,7 +67,7 @@ bool compararFechas(const string& s1, const string& s2){
     if (m1!=m2) return m1>m2;
     return d1>=d2;
 }
-//mostrar comentarios con la comparacion 
+
 void cargarComentarios(const string &date){
     cout<<"Cargando Comentarios..."<<endl;
     system("cls");
@@ -100,26 +88,11 @@ void cargarComentarios(const string &date){
         if(compararFechas(comment.fecha, date)){
             contador++;
 
-            string producto = comment.produc.nombre;
-            if (producto.length() > 25) {
-                producto = producto.substr(0, 22) + "...";
-            }
-
-            string usuario = comment.user;
-            if (usuario.length() > 25) {
-                usuario = usuario.substr(0, 22) + "...";
-            }
-
-            string comentario = comment.comento;
-            if (comentario.length() > 70) {
-                comentario = comentario.substr(0, 67) + "...";
-            }
-
             cout << left
                  << setw(5) << comment.idComentario
-                 << setw(25) << producto
-                 << setw(25) << usuario
-                 << setw(70) << comentario
+                 << setw(25) << comment.produc.nombre
+                 << setw(25) << comment.user
+                 << setw(70) << comment.comento
                  << setw(15) << comment.fecha
                  << endl;
         }
@@ -133,11 +106,11 @@ void cargarComentarios(const string &date){
     cout << endl;
 }
 
-int contarProductosBajoStock() {
+int productosBajoStock() {
     int contador = 0;
     for (const auto& p : Productos) {
         if(p.stock < 15) {
-            mostrarFilaProducto(p.idProducto, p, false);
+            mostrarFilaProducto(p, false);
             contador++;
         }
     }
@@ -147,9 +120,7 @@ int contarProductosBajoStock() {
 void listarProductos() {
     mostrarEncabezadoTabla("LISTA DE PRODUCTOS");
     mostrarColumnas(false);
-    for (const auto& p : Productos) {
-        mostrarFilaProducto(p.idProducto, p, false);
-    }
+    for (const auto& p : Productos) mostrarFilaProducto(p, false);
     mostrarLineaSeparadora();
     cout << "Total de productos: " << Productos.size() << endl << endl;
 }
@@ -157,7 +128,7 @@ void listarProductos() {
 void bajoStock() {
     mostrarEncabezadoTabla("PRODUCTOS CON BAJO STOCK (Menos de 15 unidades)");
     mostrarColumnas(false);
-    int total = contarProductosBajoStock();
+    const int total = productosBajoStock();
     mostrarLineaSeparadora();
     cout << "Total de productos con bajo stock: " << total << endl << endl;
 }
@@ -170,24 +141,14 @@ void mostrarEncabezadoCarrito(const CarritoDeCompras &carrito) {
 }
 
 void mostrarProductosCarrito(const CarritoDeCompras &carrito) {
+
     mostrarColumnas(true);
-
-    if (carrito.productos.empty()) {
-        cout << "El carrito está vacío" << endl;
-        mostrarLineaSeparadora();
-        return;
-    }
-
-    for (int i = 0; i < carrito.productos.size(); i++) {
-        const int idProducto = carrito.productos[i];
-        const Producto& p = Productos[idProducto - 1];
-        mostrarFilaProducto(i+ 1, p, true, 1);
-    }
+    for (const auto &id : carrito.productos) mostrarFilaProducto(Productos[id-1], true, 1);
     mostrarLineaSeparadora();
 }
 
 void mostrarResumenCarrito(const CarritoDeCompras &carrito) {
-    double total = carrito.subtotal + carrito.impuestos + ENVIO;
+    const double total = carrito.subtotal + carrito.impuestos + ENVIO;
 
     cout << "\n" << "RESUMEN DE COMPRA" << endl;
     mostrarLineaSeparadora();
@@ -215,6 +176,11 @@ void mostrarResumenCarrito(const CarritoDeCompras &carrito) {
 
 void mostrarCarrito(const CarritoDeCompras &carrito) {
     system("cls");
+    if (carrito.productos.empty()) {
+        cout << "El carrito de compras esta vacio." << endl;
+        return;
+    }
+
     mostrarEncabezadoCarrito(carrito);
     mostrarProductosCarrito(carrito);
     mostrarResumenCarrito(carrito);
@@ -225,7 +191,7 @@ void addProducto(CarritoDeCompras &carrito, const int idProducto) {
     Productos[idProducto-1].stock--;
 	carrito.productos.push_back(idProducto);
 	carrito.subtotal += Productos[idProducto - 1].precio;
-	carrito.impuestos = carrito.subtotal * 0.19;
+	carrito.impuestos = carrito.subtotal * IMPUESTO;
 }
 
 void crearCarrito(const int idUsuario) {
@@ -284,7 +250,7 @@ int main(){
     crearCarrito(user->idUsuario);
     for (int opcion=-1;;) {
         system("cls");
-        cout << "//////Menu Principal//////" << endl;
+        cout << "====== Menu Principal ======" << endl;
         cout << "1. Listar usuarios" << endl;
         cout << "2. Listar productos" << endl;
         cout << "3. Cargar comentarios despues de una fecha" << endl;
@@ -298,17 +264,14 @@ int main(){
                 break;
             }
             case 2: {
-                cout << "//////Listar Productos//////" << endl;
+                cout << "====== Listar Productos ======" << endl;
                 cout << "1. Todos los productos" << endl;
                 cout <<"2. Productos con bajo stock" << endl;
                 int subOpcion;
                 entradaEnRango(subOpcion, 1, 2, "Seleccione una opcion (1-2): ", "Opcion invalida. Intente nuevamente.");
                 system("cls");
-                if (subOpcion == 1) {
-                    listarProductos();
-                } else {
-                    bajoStock();
-                }
+                if (subOpcion == 1) listarProductos();
+                else bajoStock();
                 break;
             }
             case 3: {
@@ -325,9 +288,7 @@ int main(){
                 do {
                     entradaEnRango(idProducto, 0, Productos.size(), "Ingrese el ID del producto a añadir (0 para salir): ", "ID invalido. Intente nuevamente.");
                     if (idProducto == 0) break;
-                    if (Productos[idProducto-1].stock==0){
-                        cout<<"Ese producto ya no esta en el stock."<<endl;
-                    }
+                    if (Productos[idProducto-1].stock==0) cout<<"Ese producto ya no esta en stock."<<endl;
                     else{
                     addProducto(carrito, idProducto);
                     cout << "Producto añadido al carrito." << endl;
