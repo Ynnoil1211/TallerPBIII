@@ -5,13 +5,13 @@
 #include <vector>
 using namespace std;
 
-inline constexpr double IMPUESTO = 0.19;
-inline constexpr double ENVIO = 1250.16;
+constexpr double IMPUESTO = 0.19;
+constexpr double ENVIO = 1250.16;
 
-inline vector<CarritoDeCompras> carritos;
-inline vector<Usuario> Usuarios;
-inline vector<Producto> Productos;
-inline vector<Comentario> comentarios;
+vector<CarritoDeCompras> carritos;
+vector<Usuario> Usuarios;
+vector<Producto> Productos;
+vector<Comentario> comentarios;
 
 inline void inicializarDatos() {
     Usuarios = {
