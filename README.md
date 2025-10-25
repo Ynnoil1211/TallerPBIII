@@ -1,10 +1,10 @@
 # Parcial II Johanny
 
 ## Integrantes:
-- Lionny Lin Li
-- Andres Estrada
-- Daniel Borre
-- Angel Merchan
+- Lionny Lin Li - 0222510050
+- Andres Estrada - 0222510044
+- Daniel Borre - 0222510016
+- Angel Merchan - 0222510035
 
 ## Requisitos de Compilación
 - **Compilador:** GCC (GNU Compiler Collection) 15.2.0
