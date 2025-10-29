@@ -21,5 +21,6 @@ Sistema de carrito de compras desarrollado en C++ que permite gestionar usuarios
 3. Listar productos (todos o con bajo stock) - Daniel Borre
 4. Cargar comentarios filtrados por fecha - Lionny Lin Li
 5. Añadir productos al carrito de compras - Daniel Borre
-
-6. Leer comentarios desde .txt - Lionny Lin Li
+6. Leer usuarios desde .txt -
+7. Leer productos desde .txt -
+8. Leer comentarios desde .txt - Lionny Lin Li
