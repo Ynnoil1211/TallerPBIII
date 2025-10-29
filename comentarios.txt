@@ -1,50 +1,50 @@
-1,Laptop,Juan Pérez,Excelente rendimiento; muy rápida. ¡Me encanta!,2025-05-01
-2,Smartphone,Ana Gómez,Buena cámara pero la batería dura poco.,2025-05-03
-3,Tablet,Carlos Ruiz,No me gustó; pantalla de baja calidad.,2025-05-05
-4,Auriculares,Sofía Martínez,Sonido aceptable pero el material parece frágil.,2025-05-06
-5,Teclado,Diego Fernández,Muy buen teclado mecánico; excelente respuesta.,2025-05-08
-6,Mouse,Ana Gómez,El sensor no es tan preciso como esperaba.,2025-05-10
-7,Monitor,Carlos Ruiz,Colores vibrantes y buena resolución. Muy satisfecho.,2025-05-12
-8,Impresora,Juan Pérez,Tarda mucho en imprimir; no me convence.,2025-05-13
-9,Cámara,Sofía Martínez,Increíble calidad de imagen; fotos súper nítidas.,2025-05-15
-10,Smartwatch,Diego Fernández,Buena batería; pero la pantalla no es muy brillante.,2025-05-18
-11,Silla Gamer,Lucía Rodríguez,Comodidad espectacular; perfecto para largas sesiones de juego.,2025-05-20
-12,Microondas,Andrés Ramírez,Calienta bien pero hace mucho ruido.,2025-05-22
-13,Refrigerador,María García,Espacioso y enfría rápido; muy recomendado.,2025-05-24
-14,Lavadora,Javier Martínez,Lava bien pero el ciclo es muy largo.,2025-05-26
-15,Cafetera,Carolina López,Hace café delicioso; fácil de usar.,2025-05-28
-16,Drone,Daniel Castro,Muy divertido pero la batería dura poco.,2025-05-30
-17,Bocina Bluetooth,Paola Herrera,Sonido potente y buena conexión Bluetooth.,2025-06-01
-18,Videocámara,Esteban Rojas,Perfecta para grabaciones profesionales.,2025-06-03
-19,TV LED,Fernanda Sánchez,Imagen excelente pero el sonido podría mejorar.,2025-06-05
-20,Batería Externa,Camilo Torres,Carga bien pero es un poco pesada.,2025-06-07
-21,Disco Duro,Gabriela Suárez,Gran capacidad de almacenamiento; funciona rápido.,2025-06-09
-22,Memoria USB,Raúl Espinosa,Buen tamaño pero la velocidad de transferencia es baja.,2025-06-11
-23,Router,Verónica Mendoza,Señal potente; cubre toda la casa.,2025-06-13
-24,Joystick,Fabio Jiménez,Comodo y resistente; ideal para gaming.,2025-06-15
+1,Laptop,Juan Perez,Excelente rendimiento; muy rapida. !Me encanta!,2025-05-01
+2,Smartphone,Ana Gomez,Buena camara pero la bateria dura poco.,2025-05-03
+3,Tablet,Carlos Ruiz,No me gusto; pantalla de baja calidad.,2025-05-05
+4,Auriculares,Sofia Martinez,Sonido aceptable pero el material parece fragil.,2025-05-06
+5,Teclado,Diego Fernandez,Muy buen teclado mecanico; excelente respuesta.,2025-05-08
+6,Mouse,Ana Gomez,El sensor no es tan preciso como esperaba.,2025-05-10
+7,Monitor,Carlos Ruiz,Colores vibrantes y buena resolucion. Muy satisfecho.,2025-05-12
+8,Impresora,Juan Perez,Tarda mucho en imprimir; no me convence.,2025-05-13
+9,Camara,Sofia Martinez,Increible calidad de imagen; fotos super nitidas.,2025-05-15
+10,Smartwatch,Diego Fernandez,Buena bateria; pero la pantalla no es muy brillante.,2025-05-18
+11,Silla Gamer,Lucia Rodriguez,Comodidad espectacular; perfecto para largas sesiones de juego.,2025-05-20
+12,Microondas,Andres Ramirez,Calienta bien pero hace mucho ruido.,2025-05-22
+13,Refrigerador,Maria Garcia,Espacioso y enfria rapido; muy recomendado.,2025-05-24
+14,Lavadora,Javier Martinez,Lava bien pero el ciclo es muy largo.,2025-05-26
+15,Cafetera,Carolina Lopez,Hace cafe delicioso; facil de usar.,2025-05-28
+16,Drone,Daniel Castro,Muy divertido pero la bateria dura poco.,2025-05-30
+17,Bocina Bluetooth,Paola Herrera,Sonido potente y buena conexion Bluetooth.,2025-06-01
+18,Videocamara,Esteban Rojas,Perfecta para grabaciones profesionales.,2025-06-03
+19,TV LED,Fernanda Sanchez,Imagen excelente pero el sonido podria mejorar.,2025-06-05
+20,Bateria Externa,Camilo Torres,Carga bien pero es un poco pesada.,2025-06-07
+21,Disco Duro,Gabriela Suarez,Gran capacidad de almacenamiento; funciona rapido.,2025-06-09
+22,Memoria USB,Raul Espinosa,Buen tamano pero la velocidad de transferencia es baja.,2025-06-11
+23,Router,Veronica Mendoza,Senal potente; cubre toda la casa.,2025-06-13
+24,Joystick,Fabio Jimenez,Comodo y resistente; ideal para gaming.,2025-06-15
 25,Fuente de Poder,Ricardo Vargas,Funciona bien pero los cables son muy cortos.,2025-06-17
-26,SSD,Silvia Gómez,Velocidad increíble; mi PC va mucho más rápido ahora.,2025-06-19
-27,Altavoces,Martín Aguilar,Sonido envolvente; muy buena compra.,2025-06-21
-28,Webcam,Valentina Pérez,Imagen clara pero el micrófono es deficiente.,2025-06-23
-29,Procesador,José Ramírez,Rendimiento impecable; ideal para gaming y diseño.,2025-06-25
-30,Motherboard,Natalia Correa,Buenas prestaciones pero la instalación fue complicada.,2025-06-27
-31,Memoria RAM,Julio Fernández,Expande muy bien el rendimiento del sistema.,2025-06-29
-32,Fuente Solar,Amanda Castro,Energía confiable pero la batería es pequeña.,2025-07-01
-33,Control Remoto,Pedro Duarte,Fácil de usar; reconoce muchos dispositivos.,2025-07-03
+26,SSD,Silvia Gomez,Velocidad increible; mi PC va mucho mas rapido ahora.,2025-06-19
+27,Altavoces,Martin Aguilar,Sonido envolvente; muy buena compra.,2025-06-21
+28,Webcam,Valentina Perez,Imagen clara pero el microfono es deficiente.,2025-06-23
+29,Procesador,Jose Ramirez,Rendimiento impecable; ideal para gaming y diseno.,2025-06-25
+30,Motherboard,Natalia Correa,Buenas prestaciones pero la instalacion fue complicada.,2025-06-27
+31,Memoria RAM,Julio Fernandez,Expande muy bien el rendimiento del sistema.,2025-06-29
+32,Fuente Solar,Amanda Castro,Energia confiable pero la bateria es pequena.,2025-07-01
+33,Control Remoto,Pedro Duarte,Facil de usar; reconoce muchos dispositivos.,2025-07-03
 34,Termostato,Isabela Medina,Regula bien la temperatura; intuitivo de usar.,2025-07-05
-35,Smart Lock,Oscar Rodríguez,Seguridad y tecnología en un solo dispositivo.,2025-07-07
-36,Proyector,Cristina Vargas,Imagen nítida pero requiere una sala oscura.,2025-07-09
-37,Switch Ethernet,Mario Hernández,Buena velocidad de conexión; estable.,2025-07-11
-38,Reloj Digital,Sofía Ramírez,Pantalla atractiva pero la batería dura poco.,2025-07-13
-39,Luces LED,Andrea Gutiérrez,Buenas opciones de colores; buen diseño.,2025-07-15
+35,Smart Lock,Oscar Rodriguez,Seguridad y tecnologia en un solo dispositivo.,2025-07-07
+36,Proyector,Cristina Vargas,Imagen nitida pero requiere una sala oscura.,2025-07-09
+37,Switch Ethernet,Mario Hernandez,Buena velocidad de conexion; estable.,2025-07-11
+38,Reloj Digital,Sofia Ramirez,Pantalla atractiva pero la bateria dura poco.,2025-07-13
+39,Luces LED,Andrea Gutierrez,Buenas opciones de colores; buen diseno.,2025-07-15
 40,Estabilizador,Pablo Medina,Protege bien contra variaciones de voltaje.,2025-07-17
-41,Cargador Inalámbrico,Patricia López,Carga rápido pero requiere posicionamiento preciso.,2025-07-19
+41,Cargador Inalambrico,Patricia Lopez,Carga rapido pero requiere posicionamiento preciso.,2025-07-19
 42,HDD Externo,Gonzalo Espinoza,Mucho espacio; resistente y confiable.,2025-07-21
-43,Micrófono,Elena Herrera,Calidad de sonido profesional; ideal para podcast.,2025-07-23
-44,Altavoz Inteligente,Diego Soto,Responde bien a comandos de voz; útil en casa.,2025-07-25
-45,Antena Wi-Fi,Miguel Rojas,Amplifica bien la señal pero el rango es limitado.,2025-07-27
-46,Climatizador,Estefanía Carrillo,Enfría rápido pero es algo ruidoso.,2025-07-29
-47,Raspberry Pi,Manuel Vargas,Perfecto para proyectos electrónicos y programación.,2025-07-31
-48,Capturadora,Luisa Mejía,Ideal para streaming y grabaciones en alta calidad.,2025-08-02
-49,Smart Plug,Victoria Torres,Muy práctico; fácil de conectar y configurar.,2025-08-04
-50,Timbre Inteligente,Federico Montoya,Buena cámara; útil para seguridad.,2025-08-06
+43,Microfono,Elena Herrera,Calidad de sonido profesional; ideal para podcast.,2025-07-23
+44,Altavoz Inteligente,Diego Soto,Responde bien a comandos de voz; util en casa.,2025-07-25
+45,Antena Wi-Fi,Miguel Rojas,Amplifica bien la senal pero el rango es limitado.,2025-07-27
+46,Climatizador,Estefania Carrillo,Enfria rapido pero es algo ruidoso.,2025-07-29
+47,Raspberry Pi,Manuel Vargas,Perfecto para proyectos electronicos y programacion.,2025-07-31
+48,Capturadora,Luisa Mejia,Ideal para streaming y grabaciones en alta calidad.,2025-08-02
+49,Smart Plug,Victoria Torres,Muy practico; facil de conectar y configurar.,2025-08-04
+50,Timbre Inteligente,Federico Montoya,Buena camara; util para seguridad.,2025-08-06
