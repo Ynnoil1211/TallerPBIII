@@ -4,6 +4,7 @@
 #include "Structs.h"
 #include <vector>
 #include <fstream>
+#include <iomanip>
 #include <unordered_map>
 using namespace std;
 
@@ -106,10 +107,80 @@ inline void inicializarComentarios() {
     }
     file.close();
 }
+
+inline void cargarCarritos() {
+    ifstream file("carritos_guardados.txt");
+    if (!file.is_open()) return; // Si no existe el archivo, no hay carritos guardados
+
+    string line;
+    while (getline(file, line)) {
+        if (line.empty()) continue;
+
+        CarritoDeCompras carrito;
+        size_t begin = 0;
+        size_t pos = line.find(',', begin);
+        carrito.idCarrito = stoi(line.substr(begin, pos - begin));
+
+        begin = pos + 1;
+        pos = line.find(',', begin);
+        int idUsuario = stoi(line.substr(begin, pos - begin));
+        carrito.usuario = Usuarios[idUsuario - 1];
+
+        begin = pos + 1;
+        pos = line.find(',', begin);
+        carrito.subtotal = stod(line.substr(begin, pos - begin));
+
+        begin = pos + 1;
+        pos = line.find(',', begin);
+        carrito.impuestos = stod(line.substr(begin, pos - begin));
+
+        begin = pos + 1;
+        string productosStr = line.substr(begin);
+        if (!productosStr.empty()) {
+            size_t prodBegin = 0;
+            while (prodBegin < productosStr.length()) {
+                size_t prodPos = productosStr.find(';', prodBegin);
+                if (prodPos == string::npos) prodPos = productosStr.length();
+
+                int idProducto = stoi(productosStr.substr(prodBegin, prodPos - prodBegin));
+                carrito.productos.push_back(idProducto);
+
+                prodBegin = prodPos + 1;
+            }
+        }
+
+        carritos.push_back(carrito);
+    }
+    file.close();
+}
+
+inline void guardarCarritosPersistentes() {
+    ofstream file("carritos_guardados.txt");
+    if (!file.is_open()) return;
+
+    for (const auto& carrito : carritos) {
+        if (carrito.productos.empty()) continue;
+
+        file << carrito.idCarrito << ","
+             << carrito.usuario.idUsuario << ","
+             << fixed << setprecision(2) << carrito.subtotal << ","
+             << fixed << setprecision(2) << carrito.impuestos << ",";
+
+        // Guardar IDs de productos separados por ;
+        for (size_t i = 0; i < carrito.productos.size(); i++) {
+            file << carrito.productos[i];
+            if (i < carrito.productos.size() - 1) file << ";";
+        }
+        file << endl;
+    }
+    file.close();
+}
+
 inline void inicializarDatos() {
     inicializarUsuarios();
     inicializarProductos();
     inicializarComentarios();
+    cargarCarritos();
 }
 
 #endif

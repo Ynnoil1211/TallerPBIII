@@ -345,6 +345,7 @@ int main(){
             }
             case 5: {
                 guardarCarritosEnArchivo();
+                guardarCarritosPersistentes();
                 cout << "Gracias" << endl;
                 return 0;
             }
