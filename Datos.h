@@ -11,15 +11,45 @@ constexpr double IMPUESTO = 0.19;
 constexpr double ENVIO = 1250.16;
 
 vector<CarritoDeCompras> carritos;
-vector<Usuario> Usuarios = {{1, "Juan Perez", "juan.perez@email.com", "Qwerty123", "a", "a"}};
+vector<Usuario> Usuarios;
 vector<Producto> Productos;
 unordered_map<string, size_t> pMap; // Para optimizar las busquedas
 vector<Comentario> comentarios;
 
 
 inline void inicializarUsuarios() {
+ ifstream file("Usuarios.txt");
+    string line;
+    getline(file, line);
+    while (getline(file, line)) {
+        Usuarios.emplace_back();
+        size_t begin = 0;
+        size_t pos = line.find(',', begin);
+        Usuarios.back().idUsuario = stoi(line.substr(begin, pos-begin));
 
+        begin = pos+1;
+        pos = line.find(',', begin);
+        Usuarios.back().nombre = line.substr(begin, pos - begin);
+
+        begin = pos+1;
+        pos = line.find(',', begin);
+        Usuarios.back().correoElectronico = line.substr(begin, pos - begin);
+
+        begin = pos+1;
+        pos = line.find(',', begin);
+        Usuarios.back().contra = stod(line.substr(begin, pos - begin));
+
+       begin = pos+1;
+        pos = line.find(',', begin);
+        Usuarios.back().direccion= stod(line.substr(begin, pos - begin));
+
+        begin = pos+1;
+        pos = line.find(',', begin);
+        Usuarios.back().metodoDePago = stod(line.substr(begin, pos - begin));
+    }
+    file.close();
 }
+
 inline void inicializarProductos() {
     ifstream file("productos.txt");
     string line;
