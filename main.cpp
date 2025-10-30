@@ -61,8 +61,8 @@ bool compararFechas(const string& s1, const string& s2){
     stringstream ss1(s1);
     stringstream ss2(s2);
     char slash;
-    ss1>>d1>>slash>>m1>>slash>>a1;
-    ss2>>d2>>slash>>m2>>slash>>a2;
+    ss1>>a1>>slash>>m1>>slash>>d1;
+    ss2>>a2>>slash>>m2>>slash>>d2;
     if(a1!=a2) return a1>a2;
     if (m1!=m2) return m1>m2;
     return d1>=d2;
@@ -276,7 +276,7 @@ int main(){
             }
             case 3: {
                 string date;
-                cout << "Ingrese la fecha (dd-mm-aaaa): ";
+                cout << "Ingrese la fecha (aaaa/mm/dd): ";
                 cin >> date;
                 cargarComentarios(date);
                 break;
