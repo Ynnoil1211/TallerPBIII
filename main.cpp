@@ -276,7 +276,7 @@ int main(){
             }
             case 3: {
                 string date;
-                cout << "Ingrese la fecha (dd/mm/aaaa): ";
+                cout << "Ingrese la fecha (dd-mm-aaaa): ";
                 cin >> date;
                 cargarComentarios(date);
                 break;
