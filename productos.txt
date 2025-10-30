@@ -25,7 +25,7 @@ idProducto,nombre,descripcion,precio,stock
 24,Joystick,Control inalambrico para videojuegos,79.99,20
 25,Fuente de Poder,Fuente de alimentacion para PC de 750W,89.99,17
 26,SSD,Unidad de almacenamiento SSD de 1TB,149.99,32
-27,Altavoces,Par de bocinas estéreo con subwoofer,139.99,23
+27,Altavoces,Par de bocinas estereo con subwoofer,139.99,23
 28,Webcam,Camara web Full HD con microfono integrado,69.99,37
 29,Procesador,CPU Intel i7 de ultima generacion,349.99,9
 30,Motherboard,Placa base compatible con procesadores modernos,199.99,13
