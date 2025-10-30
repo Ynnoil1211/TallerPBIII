@@ -10,7 +10,7 @@ constexpr double IMPUESTO = 0.19;
 constexpr double ENVIO = 1250.16;
 
 vector<CarritoDeCompras> carritos;
-vector<Usuario> Usuarios = {{1, "Juan Perez", "juan.perez@email.com", "Qwerty123", "a", "b"}};
+vector<Usuario> Usuarios;
 vector<Producto> Productos;
 vector<Comentario> comentarios;
 
