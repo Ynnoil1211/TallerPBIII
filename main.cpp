@@ -4,6 +4,7 @@
 #include <sstream>
 #include <algorithm>
 #include <iomanip>
+#include <fstream>
 #include <windows.h>
 #include "Structs.h"
 #include "Datos.h"
@@ -194,6 +195,50 @@ void addProducto(CarritoDeCompras &carrito, const int idProducto) {
 	carrito.impuestos = carrito.subtotal * IMPUESTO;
 }
 
+void guardarCarritosEnArchivo() {
+    ofstream file("carritos.txt");
+
+    if (!file.is_open()) {
+        cout << "Error al abrir el archivo para guardar los carritos." << endl;
+        return;
+    }
+
+    // Escribir encabezado
+    file << "========================================" << endl;
+    file << "       CARRITOS DE COMPRAS GUARDADOS   " << endl;
+    file << "========================================" << endl << endl;
+
+    for (const auto& carrito : carritos) {
+        if (carrito.productos.empty()) continue; // Solo guardar carritos con productos
+
+        const double total = carrito.subtotal + carrito.impuestos + ENVIO;
+
+        file << "ID Carrito: " << carrito.idCarrito << endl;
+        file << "Usuario: " << carrito.usuario.nombre << endl;
+        file << "Correo: " << carrito.usuario.correoElectronico << endl;
+        file << "Direccion: " << carrito.usuario.direccion << endl;
+        file << "Metodo de Pago: " << carrito.usuario.metodoDePago << endl;
+        file << string(80, '-') << endl;
+
+        file << "PRODUCTOS:" << endl;
+        for (const auto& idProd : carrito.productos) {
+            const auto& p = Productos[idProd - 1];
+            file << "  - " << p.nombre
+                 << " | $" << fixed << setprecision(2) << p.precio << endl;
+        }
+
+        file << string(80, '-') << endl;
+        file << "Subtotal: $" << fixed << setprecision(2) << carrito.subtotal << endl;
+        file << "Impuestos (19%): $" << fixed << setprecision(2) << carrito.impuestos << endl;
+        file << "Envio: $" << fixed << setprecision(2) << ENVIO << endl;
+        file << "TOTAL: $" << fixed << setprecision(2) << total << endl;
+        file << string(80, '=') << endl << endl;
+    }
+
+    file.close();
+    cout << "Carritos guardados exitosamente en 'carritos.txt'" << endl;
+}
+
 void crearCarrito(const int idUsuario) {
 	const int id = (carritos.empty() ? 1 : carritos.back().idCarrito+1);
 	const CarritoDeCompras carrito = {id,Usuarios[idUsuario - 1],{},0.0,0.0};
@@ -299,6 +344,7 @@ int main(){
                 break;
             }
             case 5: {
+                guardarCarritosEnArchivo();
                 cout << "Gracias" << endl;
                 return 0;
             }
