@@ -3,7 +3,9 @@
 
 #include "Structs.h"
 #include <vector>
+#include <algorithm>
 #include <fstream>
+#include <unordered_map>
 using namespace std;
 
 constexpr double IMPUESTO = 0.19;
@@ -12,6 +14,7 @@ constexpr double ENVIO = 1250.16;
 vector<CarritoDeCompras> carritos;
 vector<Usuario> Usuarios;
 vector<Producto> Productos;
+unordered_map<string, size_t> pMap; // Para optimizar las busquedas
 vector<Comentario> comentarios;
 
 
@@ -19,7 +22,33 @@ inline void inicializarUsuarios() {
 
 }
 inline void inicializarProductos() {
+    ifstream file("productos.txt");
+    string line;
+    while (getline(file, line)) {
+        Productos.emplace_back();
+        size_t begin = 0;
+        size_t pos = line.find(',', begin);
+        Productos.back().idProducto = stoi(line.substr(begin, pos-begin));
 
+        begin = pos+1;
+        pos = line.find(',', begin);
+        Productos.back().nombre = line.substr(begin, pos - begin);
+        // Mapa para optimizar busquedas en los comentarios
+        pMap[Productos.back().nombre] = Productos.back().idProducto - 1;
+
+        begin = pos+1;
+        pos = line.find(',', begin);
+        Productos.back().descripcion = line.substr(begin, pos - begin);
+
+        begin = pos+1;
+        pos = line.find(',', begin);
+        Productos.back().precio = stod(line.substr(begin, pos - begin));
+
+        begin = pos+1;
+        pos = line.find(',', begin);
+        Productos.back().stock = stoi(line.substr(begin, pos - begin));
+    }
+    file.close();
 }
 inline void inicializarComentarios() {
     ifstream file("comentarios.txt");
@@ -32,9 +61,8 @@ inline void inicializarComentarios() {
 
         begin=pos+1;
         pos = line.find(',', begin);
-        comentarios.back().produc = *(find_if(Productos.begin(), Productos.end(), [=](const Producto &p) {
-            return p.nombre == (line.substr(begin, pos - begin));
-        }));
+        string nom = line.substr(begin, pos-begin);
+        comentarios.back().produc = Productos[pMap[nom]];
 
         begin=pos+1;
         pos = line.find(',', begin);

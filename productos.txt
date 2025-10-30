@@ -1,0 +1,51 @@
+idProducto,nombre,descripcion,precio,stock
+1,Laptop,Portatil con pantalla Full HD y SSD de 512GB,899.99,10
+2,Smartphone,Telefono con camara de 108MP y carga rapida,499.50,20
+3,Tablet,Dispositivo con pantalla tactil de 10 pulgadas,299.99,15
+4,Auriculares,Audifonos inalambricos con cancelacion de ruido,129.99,25
+5,Teclado,Teclado mecanico con iluminacion RGB,89.99,30
+6,Mouse,Raton inalambrico con sensor optico de alta precision,59.99,50
+7,Monitor,Pantalla LED 4K de 27 pulgadas,499.00,12
+8,Impresora,Laser multifuncional con Wi-Fi,179.99,18
+9,Camara,Camara digital con lente profesional,799.99,8
+10,Smartwatch,Reloj inteligente con GPS y monitoreo cardiaco,199.99,22
+11,Silla Gamer,Silla ergonomica ajustable con soporte lumbar,299.99,14
+12,Microondas,Horno microondas con multiples funciones,129.99,40
+13,Refrigerador,Frigorifico doble puerta con sistema No Frost,1199.99,5
+14,Lavadora,Lavadora automatica con capacidad de 10kg,599.99,7
+15,Cafetera,Cafetera express con vaporizador de leche,149.99,35
+16,Drone,Drone con camara 4K y estabilizador,699.99,9
+17,Bocina Bluetooth,Altavoz portatil con sonido envolvente,89.99,33
+18,Videocamara,Videocamara profesional con grabacion en 4K,999.99,6
+19,TV LED,Televisor inteligente de 55 pulgadas con HDR,749.99,11
+20,Bateria Externa,Bateria de 20000mAh con carga rapida,39.99,45
+21,Disco Duro,Disco duro externo de 2TB,129.99,28
+22,Memoria USB,Pendrive de 128GB,29.99,60
+23,Router,Router Wi-Fi 6 de alta velocidad,199.99,16
+24,Joystick,Control inalambrico para videojuegos,79.99,20
+25,Fuente de Poder,Fuente de alimentacion para PC de 750W,89.99,17
+26,SSD,Unidad de almacenamiento SSD de 1TB,149.99,32
+27,Altavoces,Par de bocinas estéreo con subwoofer,139.99,23
+28,Webcam,Camara web Full HD con microfono integrado,69.99,37
+29,Procesador,CPU Intel i7 de ultima generacion,349.99,9
+30,Motherboard,Placa base compatible con procesadores modernos,199.99,13
+31,Memoria RAM,Modulo de RAM DDR4 de 16GB,79.99,41
+32,Fuente Solar,Panel solar portatil con bateria integrada,249.99,4
+33,Control Remoto,Mando universal para TV y dispositivos,24.99,50
+34,Termostato,Termostato digital programable,99.99,22
+35,Smart Lock,Cerradura electronica con huella digital,199.99,6
+36,Proyector,Proyector LED con resolucion Full HD,299.99,12
+37,Switch Ethernet,Switch de red de 8 puertos,59.99,38
+38,Reloj Digital,Reloj inteligente con pantalla AMOLED,89.99,26
+39,Luces LED,Tiras LED RGB con control remoto,39.99,55
+40,Estabilizador,Estabilizador de voltaje para dispositivos electronicos,159.99,10
+41,Cargador Inalambrico,Base de carga inalambrica rapida,49.99,30
+42,HDD Externo,Disco duro portatil de 4TB,179.99,15
+43,Microfono,Microfono profesional para grabacion,149.99,7
+44,Altavoz Inteligente,Asistente de voz con altavoz integrado,129.99,20
+45,Antena Wi-Fi,Amplificador de señal inalambrico,79.99,33
+46,Climatizador,Aire acondicionado portatil con control remoto,299.99,5
+47,Raspberry Pi,Kit de desarrollo con Raspberry Pi 4,129.99,19
+48,Capturadora,Placa de captura de video en alta resolucion,199.99,8
+49,Smart Plug,Enchufe inteligente compatible con asistentes virtuales,39.99,42
+50,Timbre Inteligente,Timbre con camara y conexion a Wi-Fi,149.99,10
