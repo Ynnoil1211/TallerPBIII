@@ -3,7 +3,6 @@
 
 #include "Structs.h"
 #include <vector>
-#include <algorithm>
 #include <fstream>
 #include <unordered_map>
 using namespace std;
