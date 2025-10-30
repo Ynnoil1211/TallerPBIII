@@ -37,15 +37,15 @@ inline void inicializarUsuarios() {
 
         begin = pos+1;
         pos = line.find(',', begin);
-        Usuarios.back().contra = stod(line.substr(begin, pos - begin));
+        Usuarios.back().contra = line.substr(begin, pos - begin);
 
        begin = pos+1;
         pos = line.find(',', begin);
-        Usuarios.back().direccion= stod(line.substr(begin, pos - begin));
+        Usuarios.back().direccion= line.substr(begin, pos - begin);
 
         begin = pos+1;
         pos = line.find(',', begin);
-        Usuarios.back().metodoDePago = stod(line.substr(begin, pos - begin));
+        Usuarios.back().metodoDePago = line.substr(begin, pos - begin);
     }
     file.close();
 }
